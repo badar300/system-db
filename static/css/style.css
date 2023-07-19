@@ -1,0 +1,425 @@
+.system-wrapper {
+    background: #d8d8d8;
+    padding: 30px;
+    min-height: 100vh;
+    margin: 30px auto;
+    border: 2px solid #000;
+}
+
+.container {
+    max-width: 97%;
+}
+
+button.add-btn {
+    background: #c4d6a0;
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 10px 25px;
+    border: 2px solid #000;
+}
+
+button.edit-btn {
+    background: #d9958f;
+    border: 2px solid #000;
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 10px 25px;
+}
+
+.bd-buttons {
+    text-align: right;
+}
+
+.bd-buttons button {
+    margin: 0 0 0 20px;
+}
+
+.system-wrapper .form-field label {
+    text-align: right;
+    width: 28%;
+    margin-right: 10px;
+    font-weight: 500;
+}
+.system-wrapper .form-field {
+    padding-bottom: 10px;
+}
+
+.system-wrapper input, .system-wrapper select {
+    border: 1px solid #000;
+    padding: 1px 10px;
+    width: 42%;
+}
+
+.platform-wrap {
+    border: 3px solid #7030a0;
+    background: #fff;
+    padding: 30px 20px;
+    margin: 20px 0;
+}
+
+::placeholder {
+    color: #000;
+}
+
+.fans-r select {
+    width: 100%;
+}
+
+.fan-dropdown {
+    border: 3px solid #9dbb61;
+    padding: 15px;
+    margin-top: 20px;
+}
+
+.cooling-dropdown {
+    border: 3px solid #0070c0;
+    padding: 15px;
+    margin-top: 20px;
+}
+
+.nav-pills .nav-link {
+    padding: 2px 12px;
+    border: 1px solid #000;
+    border-radius: 0;
+    margin-bottom: 10px;
+    color: #000;
+    background: #d8d8d8;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+    color: #000;
+    background-color: #92d050;
+    border-color: #92d050;
+}
+
+.matching-system {
+    background: #fff;
+    height: 93.5%;
+    border: 3px solid #7e7777;
+    margin-top: 20px;
+    padding: 15px;
+}
+.matching-systems-box
+{
+    max-height: 650px;
+    overflow-y: auto;
+    padding: 0 10px;
+}
+.matching-systems-box::-webkit-scrollbar-thumb {
+    background: #c4d6a0;
+}
+
+.matching-systems-box::-webkit-scrollbar {
+    width: 3px;
+}
+
+button.match-btn {
+    width: 100%;
+    background: transparent;
+    border: 1px solid #000;
+    text-align: left;
+    cursor: pointer;
+    padding-left: 12px;
+    margin-bottom: 10px;
+}
+
+textarea.search {
+    height: 80px;
+    border: 3px solid #612621;
+    width: 100%;
+    margin-top: 10px;
+    padding-left: 12px;
+}
+
+p.tab-title {
+    background: #92d050;
+    width: max-content;
+    padding: 2px 30px;
+    margin-bottom: 10px;
+}
+
+button {
+    cursor: pointer;
+}
+
+.bd-buttons button:hover {
+    background: #000;
+    color: #fff;
+}
+
+.fans-list {
+    position: relative;
+}
+
+.fans-list p {
+    margin: 0;
+}
+
+ul.drop-lisitng {
+    padding-left: 0;
+    position: relative;
+    opacity: 0;
+    display: none;
+    transition: 5s;
+    background: transparent;
+    width: 100%;
+    list-style: none;
+}
+
+ul.drop-lisitng {
+    opacity: 1 !important;
+    display: block !important;
+    transition: 5s !important;
+}
+
+button.supply-btn {
+    margin-bottom: 5px;
+    width: 80%;
+    border: 1px solid #000;
+    background: #eee;
+}
+.error.code{
+    color: red !important;
+    font-size: 5px;
+    
+}
+
+label#controller-error {
+    font-size: 11px;
+    position: absolute;
+    left: 0;
+    bottom: -7px;
+    text-align: left;
+    background: transparent;
+}
+
+.system-wrapper .form-field {
+    padding-bottom: 18px;
+    position: relative;
+}
+
+header {
+    background: #d9958f;
+    padding: 17px 38px;
+    text-align: right;
+    border-bottom: 2px solid #d8d8d8;
+}
+a.header-logout {
+    background: #000000;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 9px 30px;
+}
+
+a:hover 
+{
+    text-decoration: none;
+}
+
+a.header-logout:hover {
+    background: #c4d6a0 !important;
+    color: #000 !important;
+}
+
+.invalid-feedback {
+    position: absolute;
+    bottom: 0;
+    font-size: 12px;
+}
+input#btnReset {
+    padding: 10px 20px;
+    border: 2px solid;
+    width: max-content;
+    margin-left: 18px;
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+input#btnReset:hover {
+    background: #000;
+    color: #fff;
+    border-color: #000;
+}
+
+.cott {
+    width: 28%;
+}
+
+.control-table-wrapper {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.control-table {
+    width: 72%;
+    padding-left: 10px;
+}
+
+.plus-btn {
+    background: #c4d6a0;
+    padding: 6px 15px;
+}
+
+.minus-btn {
+    background: #d9958f;
+    padding: 6px 15px;
+}
+
+.signal-table input {
+    width: 100% !important;
+    font-size: 15px;
+}
+
+.signal-table {
+    padding-top: 10px;
+}
+label#project_number-error , label#project_name-error, label#standard-error, label#system_tag-error {
+    font-size: 13px;
+    color: #d30b0b;
+    font-weight: 400;
+    padding-left: 30%;
+    width: 100% !important;
+    text-align: left;
+    margin: 0;
+}
+
+label#platform-error , label#interface-error , label#medium-error, label#type-error , label#cont-error {
+    color: red;
+    font-size: 13px;
+    font-weight: 400;
+    position: relative;
+    left: 0;
+    margin: 0;
+    text-align: left;
+    display: block;
+}
+
+label#cont-error {
+    width: 100%;
+}
+
+/* edit page css */
+
+.edit-section .system-wrapper {
+    background: #e5b9b6;
+}
+
+button.delete-btn {
+    background: #923931;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.bd-buttons.edit-btns {
+    display: flex;
+    justify-content: left;
+    align-items: flex-end;
+    height: 100%;
+}
+
+.box-field.edit-pro input , .box-field.edit-pro select {
+    width: 65%;
+}
+
+button#search-btn {
+    background: #e29390;
+    margin-top: 15px;
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* Modal Css */
+
+.modal-dialog {
+    max-width: 600px;
+}
+h4#myModalLabel {
+    font-size: 18px;
+}
+.modal-body {
+    font-size: 14px;
+    text-align: left;
+}
+.modal-footer button.btn.btn-secondary {
+    color: #404040;
+    background: #f2f2f2;
+    border-color: #f2f2f2;
+}
+button#delete_btn {
+    background: #d31212;
+    border-color: #d31212;
+}
+.modal-header button.close span {
+    color: #000;
+    background: #e5b9b6;
+    padding: 5px 13px;
+    border-radius: 50%;
+}
+.modal-header button.close:hover {
+    background: transparent;
+}
+.modal-footer {
+    padding: 10px 15px;
+}
+
+/* End Modal Css */
+
+/* Swal Css */
+
+.swal-footer {
+    text-align: center;
+}
+.swal-modal {
+    padding: 25px;
+    background: #f1f0f0;
+}
+.swal-text {
+    margin-top: 0 !important;
+    font-size: 20px;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: #000;
+}
+.swal-footer {
+    padding: 0;
+}
+
+button.swal-button.swal-button--confirm {
+    background: #e29390;
+    padding: 10px 40px;
+    outline: 0;
+    box-shadow: 0 !important;
+}
+button.swal-button.swal-button--confirm:focus {
+    outline: none;
+    border: 0;
+    box-shadow: 0 !important;
+}
+
+/* End Swal Css */
+
+label#controller-error {
+    font-size: 13px;
+    position: relative;
+    float: left;
+    display: block;
+    text-align: left;
+    background: transparent;
+    color: red;
+    font-weight: 400;
+    bottom: -2px;
+}
+
+.form-field.cotroller {
+   
+    display: flex;
+    flex-flow: column-reverse;
+}

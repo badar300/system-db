@@ -1,0 +1,1080 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Systems DB</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css"
+      integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.0/css/all.min.css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static '/css/style.css' %}"
+    />
+    <link
+      href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/ui-lightness/jquery-ui.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+  </head>
+  <style>
+    button#controlval {
+      height: 24px;
+    }
+    .cot {
+      border: solid 1px black;
+      width: 35%;
+      text-align: center;
+      font-size: 16px;
+      margin-top: 0%;
+    }
+    .matching-system h6 {
+    text-align: center;
+    border: 1px solid #c5c5c5;
+    padding: 10px;
+    color: red;
+}
+    .cot label {
+      margin: 0%;
+      height: 21px;
+      font-size: 20px;
+    }
+    .matching-system button {
+      width: 100% !important;
+    }
+    .matching-tct p {
+      /* margin: 0; */
+      position: absolute;
+      top: 27px;
+      left: 0;
+      font-weight: 600;
+      right: 0;
+    }
+    button.search-btn {
+      padding: 10px 25px;
+      margin-right: -243%;
+    }
+    .matching-system {
+      padding-top: 33px;
+    }
+    .matching-system button {
+      width: 100% !important;
+      margin-bottom: 10px;
+    }
+    .matching-system a {
+    display: block;
+    background: #efefef;
+    border: 2px solid #7e7777;
+    margin-top: 10px;
+    padding: 3px;
+    color: #000;
+    text-align: center;
+}
+  </style>
+  <body>
+    <header>
+      <div class="main-header">
+        <a href="/logout/" class="header-logout">Logout</a>
+      </div>
+    </header>
+    <section class="db-system">
+      <div class="container">
+        <div class="system-wrapper">
+          <form
+            action="/system/"
+            method="post"
+            id="raymond"
+            class="database-form"
+          >
+            {% csrf_token %}
+
+            <div class="row">
+              <div class="col-12 col-md-8">
+                <div class="box-field">
+                  <div class="form-field">
+                    <label for="project">Project Number:</label>
+                    <input
+                      type="text"
+                      id="project_number"
+                      name="project_number"
+                      placeholder="Project Number"
+                    />
+                  </div>
+                  <div class="form-field">
+                    <label for="project-n">Project Name:</label>
+                    <input
+                      type="text"
+                      id="project_name"
+                      name="project_name"
+                      placeholder="Project Name"
+                    />
+                  </div>
+                  <div class="form-field">
+                    <label for="standard">Standard:</label>
+                    <select name="standard" id="standard">
+                      <option value="" selected="true" >
+                        Select Standard
+                      </option>
+                      {% for s in standard%}
+                      <option value="{{s.id}}">{{s.standard}}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                  <div class="form-field">
+                    <label for="tag">System Tag:</label>
+                    <input
+                      type="text"
+                      id="system_tag"
+                      name="system_tag"
+                      placeholder="System Tag"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-md-4">
+                <div class="bd-buttons">
+                  <button class="add-btn">Add</button>
+                  <!-- <button class="edit-btn">Edit</button> -->
+                  <input type="button" id="btnReset" value="Reset" />
+                </div>
+              </div>
+            </div>
+            <div class="row project-rw">
+              <div class="col-12 col-lg-9 col-md-8 left-col">
+                <div class="platform-wrap">
+                  <div class="platform-dropdown">
+                    <div class="form-field">
+                      <select name="platform" id="platform">
+                        <option
+                          value=""
+                          selected="true"
+                          
+                        >
+                          Select Platform
+                        </option>
+                        {% for p in platform%}
+                        <option value="{{p.id}}">{{p.platform}}</option>
+                        {% endfor %}
+                      </select>
+                    </div>
+                    <div class="form-field">
+                      <select name="interface" id="interface">
+                        <option
+                          value=""
+                          selected="true"
+                          
+                        >
+                          Select Interface
+                        </option>
+                        {% for i in interface%}
+                        <option value="{{i.id}}">{{i.interface}}</option>
+                        {% endfor %}
+                      </select>
+                    </div>
+                    <div class="form-field cotroller">
+                      <select id="controller" name="controller">
+                        <option value="" selected="true" >Select Controller</option>
+                        {% for c in controller%}
+                        <option value="{{c.id}}">{{c.controller}}</option>
+                        {% endfor %}
+                      </select>
+                    </div>
+                    <div class="form-field">
+                      <select name="system_medium" id="medium">
+                        <option
+                          value=""
+                          selected="true"
+                          
+                        >
+                          Select System Medium
+                        </option>
+                        {% for sm in systeMedium%}
+                        <option value="{{sm.id}}">
+                          {{sm.systemMediumType}}
+                        </option>
+                        {% endfor %}
+                      </select>
+                    </div>
+                    <div class="form-field">
+                      <select name="system_type" id="type">
+                        <option
+                          value=""
+                          selected="true"
+                          
+                        >
+                          Select System Type
+                        </option>
+                        {% for st in systemType%}
+                        <option value="{{st.id}}">{{st.systemType}}</option>
+                        {% endfor %}
+                      </select>
+                    </div>
+                  </div>
+                  <div class="row fans-r">
+                    <div class="col-12 col-md-3 fan-lft">
+                      <div class="fan-dropdown" name="equipment_sec" id="equip">
+                        {% for equip in equipments %}
+                        <div
+                          class="nav flex-column nav-pills"
+                          id="v-equip-tab"
+                          role="tablist"
+                          aria-orientation="vertical"
+                        >
+                          <button
+                            class="nav-link fans-doc"
+                            id="equipval_{{equip.id}}"
+                            data-toggle="pill"
+                            href="#v-eco"
+                            role="tab"
+                            value="{{equip.equipment}}"
+                            aria-controls="v-eco"
+                            aria-selected="true"
+                            onclick="fetch('{{equip.id}}')"
+                          >
+                            {{equip.equipment}}
+                          </button>
+                        </div>
+                        {% endfor %}
+                        <input
+                          type="hidden"
+                          name="equip_sec"
+                          id="equipment_data"
+                          value=""
+                        />
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-9 fan-right">
+                      <div class="cooling-dropdown">
+                        <div class="tab-content" id="v-pills-tabContent">
+                          <div
+                            class="tab-pane fade show active"
+                            id="v-eco"
+                            role="tabpanel"
+                            aria-labelledby="v-eco-tab"
+                          >
+                            <p class="" id="fetch_name"></p>
+                          </div>
+                          <div class="control-table-wrapper">
+                            <div class="cott">
+                              <div class="form-field">
+                                <select
+                                  name="control_sec"
+                                  id="cont"
+                                  class="valid"
+                                  aria-invalid="false"
+                                >
+                                  <option
+                                    value=""
+                                    selected="true"
+                                  >
+                                    Control Type
+                                  </option>
+                                  {% for con in controltype%}
+                                  <option value="{{con.id}}">
+                                    {{con.controlType}}
+                                  </option>
+                                  {% endfor %}
+                                </select>
+                              </div>
+                            </div>
+
+                            <div class="control-table">
+                              <div class="pls-minus-btns">
+                                <button type="button" class="plus-btn">
+                                  <i class="fa fa-plus"></i>
+                                </button>
+                                <button type="button" class="minus-btn">
+                                  <i class="fa fa-minus"></i>
+                                </button>
+                              </div>
+                              <div class="multi-fields" id="multi"></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="search-text">
+                        <textarea
+                          class="search"
+                          type="texteditor"
+                          name="sequence_data"
+                          id="myeditor"
+                          placeholder="search"
+                        ></textarea>
+                      </div>
+                      <!-- <div class="col-12 col-md-4">
+                        <div class="bd-buttons">
+                          <button type="button" class="search-btn" id="search-btn">Search</button>
+                        </div>
+                      </div> -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-md-4 col-lg-3 right-col">
+                <div class="matching-tct"><p class="text-center">Matching Systems</p></div>
+                <div class="matching-system" id="matching">
+                  <!-- {%if allProject%} -->
+                  <div class="matching-systems-box">
+                    {% for project in allProject %}
+                    <a type="button" href="/edit-system/{{project.id}}">{{project.projectNumber}}:{{project.systemTag}}</a>
+                    {% endfor %}
+                  </div>
+                  <!-- {% else %}
+                  <h6>No Matching System Found</h6>
+                  {% endif %} -->
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <div id="toPick" class="d-none">
+      <div class="signal-table">
+        <div class="row fieldRow" id="properties">
+          <div class="col-12 col-md-4 multi-signal">
+            <div class="form-field">
+              <input
+                type="text"
+                class="stageInput"
+                id="stageToPick"
+                name="stage"
+                value="Stage 1(S1)"
+                readonly
+              />
+            </div>
+          </div>
+          <div class="col-12 col-md-4 multi-signal">
+            <div class="form-field">
+              <select
+                name="type"
+                id="stagetype"
+                class="valid stages"
+                aria-invalid="false"
+              >
+                <option value="" selected="true" disabled="disabled">
+                  Stages
+                </option>
+              </select>
+            </div>
+          </div>
+          <div class="col-12 col-md-4 multi-signal">
+            <div class="form-field">
+              <select
+                name="signaltype"
+                id="signaltype"
+                class="valid signals"
+                aria-invalid="false"
+              >
+                <option value="" selected="true" >
+                  Signal Type
+                </option>
+                {%for sty in signalTypes%}
+                <option value="{{sty.id}}">{{sty.signalType}}</option>
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+          <input
+            type="hidden"
+            name="stages_property"
+            id="stages_property"
+            value=""
+          />
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+<script src="https://cdn.ckeditor.com/4.11.1/standard/ckeditor.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="{%static '/js/validation.js/'%}"></script>
+<script>
+  $("#myeditor").each(function () {
+    CKEDITOR.replace($(this).prop("id"));
+  });
+</script>
+<script type="text/javascript">
+  $("#myTab a").on("click", function (e) {
+    e.preventDefault();
+    $(this).tab("show");
+  });
+  window.onunload = function () {
+    localStorage.clear();
+  };
+  var currentCount = 1;
+  $(function () {
+    $("#btnReset").bind("click", function () {
+      $("#standard")[0].selectedIndex = 0;
+      $("#platform")[0].selectedIndex = 0;
+      $("#interface")[0].selectedIndex = 0;
+      $("#medium")[0].selectedIndex = 0;
+      $("#type")[0].selectedIndex = 0;
+      $("#cont")[0].selectedIndex = 0;
+      $("#stagetype")[0].selectedIndex = 0;
+      $("#equip").html("");
+      $("#fetch_name").text('');
+      $(".cooling-dropdown p:first").removeClass("tab-title");
+      // $("#v-eco").html("");
+      $("#matching").html("");
+      $("#multi").html("");
+      equipData = []
+      currentEquipId = null
+    });
+  });
+
+  // old search button
+
+  // $("#search-btn").on("click", function (e) {
+  //   $("#matching").html("");
+  //   var html=CKEDITOR.instances['myeditor'].getSnapshot();
+  //   var dom=document.createElement("DIV");
+  //   dom.innerHTML=html;
+  //   var text_value=(dom.textContent || dom.innerText);
+  //   var system_number = $('#project_number').val()
+  //   var system_name = $('#project_name').val()
+  //   $.ajax({
+  //     url: "/search/?para=" + system_number+system_name+text_value,
+  //     type: "GET",
+  //     data: {
+  //       text_value: text_value,
+  //       system_number:system_number,
+  //       system_name:system_name,
+  //     },
+  //     success: function ({ data }) {
+  //       console.log('data',data)
+  //       if(data.length){
+  //       const selectE = document.getElementById("matching");
+  //       for (let item of data) {
+  //         const optionEl = document.createElement("a");
+  //         optionEl.innerText = item.projectNumber+':'+item.systemTag;
+  //         optionEl.value = item.projectId;
+  //         optionEl.type = "button";
+  //         optionEl.setAttribute('href','/edit-system/'+item.projectId )
+  //         selectE.append(optionEl);
+  //       }
+  //     }
+  //     else{
+  //       swal("No Matching Systems Found");
+  //     }
+  //     }
+  //   })
+
+  // })
+
+  // end search button
+
+  function fetch(equip_id) {
+    // Remove previous active class
+    {#$(".nav-link.active").removeClass("active");#}
+    {#$(this).addClass("active");#}
+    $(this).on('click', function() {
+  // Update background color to 'salmon'
+    $(this).css('background-color', 'salmon');
+    });
+
+    name = $("#equipval_" + equip_id).val();
+    currentEquipId = equip_id;
+    const data = [...equipData];
+
+    const findElement = data.find((i) => i.equipmentId === equip_id);
+
+    if (!findElement) {
+      data.push({
+        equipmentId: equip_id,
+        equipmentName: name,
+        controlTypeId: null,
+        property: [],
+      });
+      $("#cont")[0].selectedIndex = 0;
+    } else {
+      if (findElement.controlTypeId) {
+        document.getElementById("cont").value = findElement.controlTypeId;
+      } else {
+        $("#cont")[0].selectedIndex = 0;
+      }
+    }
+    equipData = data;
+    $("#fetch_name").text(name);
+    $(".cooling-dropdown p:first").addClass("tab-title");
+    $.ajax({
+      url: "/subequip?equipmentid=" + equip_id,
+      type: "GET",
+      data: {
+        equip_id: equip_id,
+      },
+      success: function ({ data }) {
+        const selectEl = document.getElementById("stagetype");
+        selectEl.innerHTML = "";
+        const emptyOption = document.createElement("option");
+        emptyOption.innerText = "Types";
+        emptyOption.value = "";
+        // emptyOption.setAttribute('disabled',true)
+        emptyOption.setAttribute('selected',true)
+        selectEl.append(emptyOption);
+        for (let item of data) {
+          const optionEl = document.createElement("option");
+          optionEl.innerText = item.subEquipment;
+          optionEl.value = item.subEquipmentId;
+          selectEl.append(optionEl);
+        }
+        $("#multi").html("");
+
+        const findElement = equipData.find((i) => i.equipmentId === equip_id);
+        const properties = findElement.property;
+        pushPropties(properties);
+      },
+    });
+    var get_te = JSON.stringify(equipData);
+	  $("#equipment_data").val(get_te)
+  }
+
+
+  $("#cont").on("change", function () {
+    var control_id = $(this).val();
+    let data = [...equipData];
+    data = data.map((i) => {
+      if (i.equipmentId === currentEquipId) {
+        i.controlTypeId = control_id;
+        return i;
+      }
+      return i;
+    });
+    equipData = data;
+    var get_te = JSON.stringify(equipData);
+	  $("#equipment_data").val(get_te)
+  });
+
+  var $wrapper = $(".multi-fields", this);
+  var count = 1;
+  $(".plus-btn").click(function (e) {
+    pushElement();
+  });
+  $(".minus-btn").click(function (events) {
+    removeElement();
+  });
+
+  function pushPropties(properties) {
+    for (const property of properties) {
+      if (!currentEquipId) {
+        swal("Select equipment first");
+        return;
+      }
+      let countVal = `Stage ${property.id}(S${property.id})`;
+      const multiFields = document.getElementById("multi");
+      const stage = document.getElementById("stageToPick");
+      const properties = document.getElementById("properties");
+      properties.setAttribute("data-id", property.id);
+      stage.value = countVal;
+      currentCount++;
+      const toPick = document.querySelector("#toPick > div");
+      const clone = toPick.cloneNode(true);
+      clone.querySelector(".stageInput").setAttribute("id", "");
+      clone.querySelector("#stagetype").setAttribute("id", "");
+      clone.querySelector("#properties").setAttribute("id", "");
+      $(clone.querySelector(".stages")).first().val(property.stage);
+      $(clone.querySelector(".signals")).first().val(property.signalType);
+      multiFields.append(clone);
+      let elementsArray = clone.querySelectorAll(".stages");
+      let signalsArray = clone.querySelectorAll(".signals");
+
+      elementsArray.forEach(function (elem) {
+        elem.addEventListener("change", changeStageType);
+      });
+      signalsArray.forEach(function (elem) {
+        elem.addEventListener("change", changeSignalType);
+      });
+    }
+  }
+
+  function pushElement() {
+    if (!currentEquipId) {
+      swal("Select equipment first");
+      return;
+    }
+    let currentCount =
+      equipData.find((i) => i.equipmentId === currentEquipId)?.property?.at(-1)
+        ?.id ?? 0;
+    currentCount++;
+
+    // add count of stages in equipment section
+    name = $("#equipval_" + currentEquipId).val();
+    $("#equipval_" + currentEquipId).text(name +'-' +currentCount);
+    // end
+
+    let countVal = `Stage ${currentCount}(S${currentCount})`;
+    let data = [...equipData];
+    data = data.map((i) => {
+      if (i.equipmentId === currentEquipId) {
+        i.property.push({
+          id: currentCount,
+          count: countVal,
+          stage: null,
+          signalType: null,
+        });
+        return i;
+      }
+      return i;
+    });
+    equipData = data;
+    // $("#equipment_data").val(JSON.stringify(equipData));
+    const multiFields = document.getElementById("multi");
+    const stage = document.getElementById("stageToPick");
+    const properties = document.getElementById("properties");
+    properties.setAttribute("data-id", currentCount);
+    stage.value = countVal;
+    const toPick = document.querySelector("#toPick > div");
+    const clone = toPick.cloneNode(true);
+    clone.querySelector(".stageInput").setAttribute("id", "");
+    clone.querySelector("#stagetype").setAttribute("id", "");
+    clone.querySelector("#properties").setAttribute("id", "");
+    multiFields.append(clone);
+    let elementsArray = clone.querySelectorAll(".stages");
+    let signalsArray = clone.querySelectorAll(".signals");
+
+    elementsArray.forEach(function (elem) {
+      elem.addEventListener("change", changeStageType);
+    });
+    signalsArray.forEach(function (elem) {
+      elem.addEventListener("change", changeSignalType);
+    });
+    // var get_te = JSON.stringify(equipData);
+	  // console.log('get_te',get_te)
+	  // $("#equipment_data").val(get_te)
+  }
+
+  function changeSignalType(e) {
+    const id = $(e.target).parents(".fieldRow").data("id");
+    let data = [...equipData];
+    data = data.map((i) => {
+      if (i.equipmentId === currentEquipId) {
+        let property = [...i.property];
+        property = property.map((p) => {
+          if (p.id === id) {
+            p.signalType = e.target.value;
+            return p;
+          }
+          return p;
+        });
+        i.property = property;
+        return i;
+      }
+      return i;
+    });
+    equipData = data;
+    var get_te = JSON.stringify(equipData);
+	  $("#equipment_data").val(get_te)
+    var equipment_section = get_te;
+    let search_data = [...searchJson];
+    search_data = search_data.map((i) => {
+        i.equipment_section = equipment_section;
+        return i;
+      return i;
+    });
+    searchJson = search_data
+    getSearchData(searchJson);
+  }
+
+  function changeStageType(e) {
+    const id = $(e.target).parents(".fieldRow").data("id");
+    let data = [...equipData];
+    data = data.map((i) => {
+      if (i.equipmentId === currentEquipId) {
+        let property = [...i.property];
+        property = property.map((p) => {
+          if (p.id === id) {
+            p.stage = e.target.value;
+            return p;
+          }
+          return p;
+        });
+        i.property = property;
+        return i;
+      }
+      return i;
+    });
+    equipData = data;
+    var get_te = JSON.stringify(equipData);
+	  $("#equipment_data").val(get_te)
+    var equipment_section = get_te;
+    let search_data = [...searchJson];
+    search_data = search_data.map((i) => {
+        i.equipment_section = equipment_section;
+        return i;
+      return i;
+    });
+    searchJson = search_data
+    getSearchData(searchJson);
+  }
+
+  function removeElement() {
+    if (!currentEquipId) {
+      swal("Select equipment first");
+      return;
+    }
+
+    let data = [...equipData];
+    let equipment = equipData.find((i) => i.equipmentId === currentEquipId);
+    // remove count from equipment section
+    name = $("#equipval_" + currentEquipId).val();
+    last = equipment.property?.length -1 
+    if (last>0){
+    $("#equipval_" + currentEquipId).text(name +'-' +last);
+    }
+    else{
+      $("#equipval_" + currentEquipId).text(name);
+    }
+    // end
+
+    if (equipment.property?.length) {
+      const id = equipment.property.at(-1)?.id;
+      data = data.map((i) => {
+        if (i.equipmentId === currentEquipId) {
+          i.property.pop();
+          return i;
+        }
+        return i;
+      });
+      equipData = data;
+      const element = $(document.querySelector(`.signal-table .fieldRow[data-id='${id}']`)).parent().remove();
+    }
+    var get_te = JSON.stringify(equipData);
+    console.log('get_te', get_te)
+    $("#equipment_data").val(get_te)
+  }
+
+  var equipData = [];
+  var currentEquipId = null;
+  var equipPorperty;
+  $("#medium").change(function () {
+    var main_id = $(this).val();
+    $.ajax({
+      url: "/system/",
+      type: "GET",
+      data: {
+        main_id: main_id,
+      },
+      success: function (data) {
+        filtered_html = $(data).find("#type").html();
+        filtered_html1 = $(data).find("#equip").html();
+        filtered_html2 = $(data).find("#cont").html();
+        $("#type").html(filtered_html);
+        $("#equip").html(filtered_html1);
+        $("#cont").html(filtered_html2);
+      },
+    });
+  });
+
+  $("#signaltype").on("change", function () {
+    let data = [...equipData];
+    var signal_id = $(this).val();
+    var equip_name = document.getElementById("fetch_name").innerText;
+    var control_id = $("#cont").val();
+    var stagetype = $("#stagetype").val();
+    var signal_id = $(this).val();
+    var stage_id = $("#stage").val();
+    if (signal_id.length != 0) {
+      var equip_property = equipPorperty;
+      var proObj = [];
+      if (equip_property) {
+        proObj = equip_property;
+      }
+      proObj.push({
+        equip: equip_name,
+        control: control_id,
+        stage_id: stage_id,
+        stagetype: stagetype,
+        signal_id: signal_id,
+      });
+      equipPorperty = proObj;
+    }
+  });
+</script>
+<script>
+  $(document).ready(function () {
+    $("#controller").select2();
+  });
+</script>
+
+<script>
+  // search script for whole seactions
+  var searchJson = [];
+
+  document.addEventListener('DOMContentLoaded', function() {
+    // Auto push elements on url hit
+    let search_data = [...searchJson]
+    search_data.push({
+      project_number: '',
+      project_name: '',
+      standard_id:'',
+      system_tag: '',
+      platform_id: '',
+      interface_id: '',
+      controller_id: '',
+      medium_id: '',
+      systemtype_id: '',
+      sequence_operation: '',
+      equipment_id:'',
+      control_id:'',
+      equipment_section:'',
+    })
+    searchJson = search_data
+  })
+
+// pass project number
+  $('#project_number').on("keyup",function () {
+    var project_number = $("#project_number").val();
+    let search_data = [...searchJson]
+    search_data = search_data.map((i) => {
+        i.project_number = project_number;
+        return i;
+      return i;
+    });
+    searchJson = search_data
+    getSearchData(searchJson);
+  })
+
+// pass project name
+  $('#project_name').on("keyup",function () {
+    var project_name = $("#project_name").val();
+    let search_data = [...searchJson]
+    search_data = search_data.map((i) => {
+        i.project_name = project_name;
+        return i;
+      return i;
+    });
+    searchJson = search_data
+    getSearchData(searchJson);
+  })
+
+
+
+// pass project standard  
+  $('#standard').on("change",function () {
+    var standard_id = $(this).val();
+    let search_data = [...searchJson]
+    search_data = search_data.map((i) => {
+        i.standard_id = standard_id;
+        return i;
+      return i;
+    });
+    searchJson = search_data
+    getSearchData(searchJson);
+  })
+
+// pass system tag
+$('#system_tag').on("keyup",function () {
+    var system_tag = $("#system_tag").val();
+    let search_data = [...searchJson]
+    search_data = search_data.map((i) => {
+        i.system_tag = system_tag;
+        return i;
+      return i;
+    });
+    searchJson = search_data
+    getSearchData(searchJson);
+  })
+
+// pass platform
+  $('#platform').on("change",function () {
+    var platform_id = $(this).val();
+    let search_data = [...searchJson]
+    search_data = search_data.map((i) => {
+        i.platform_id = platform_id;
+        return i;
+      return i;
+    });
+    searchJson = search_data
+    getSearchData(searchJson);
+  })
+
+// pass interface
+  $('#interface').on("change",function () {
+    var interface_id = $(this).val();
+    let search_data = [...searchJson];
+    search_data = search_data.map((i) => {
+        i.interface_id = interface_id;
+        return i;
+      return i;
+    });
+    searchJson = search_data
+    getSearchData(searchJson);
+  })
+
+
+// pass controller
+  $('#controller').on("change",function () {
+      var controller_id = $(this).val();
+      let search_data = [...searchJson];
+      search_data = search_data.map((i) => {
+          i.controller_id = controller_id;
+          return i;
+        return i;
+      });
+      searchJson = search_data
+      getSearchData(searchJson);
+    })
+
+// pass system medium
+  $('#medium').on("change",function () {
+      var medium_id = $(this).val();
+      let search_data = [...searchJson];
+      search_data = search_data.map((i) => {
+          i.medium_id = medium_id;
+          return i;
+        return i;
+      });
+      searchJson = search_data
+      getSearchData(searchJson);
+    })
+
+  // pass system type
+  $('#type').on("change",function () {
+      var systemtype_id = $(this).val();
+      let search_data = [...searchJson];
+      search_data = search_data.map((i) => {
+          i.systemtype_id = systemtype_id;
+          return i;
+        return i;
+      });
+      searchJson = search_data
+      getSearchData(searchJson);
+    })
+
+  // pass equipments
+  // $('#equip').on("click",function () {
+  //     var equipment_id = $("#equipval_" + currentEquipId).val();
+  //     let search_data = [...searchJson];
+  //     search_data = search_data.map((i) => {
+  //         i.equipment_id = equipment_id;
+  //         return i;
+  //       return i;
+  //     });
+  //     searchJson = search_data
+  //     getSearchData(searchJson);
+  //   })
+  $('#equip').on("click",function () {
+    var equipment_section = JSON.stringify([...equipData]);
+      let search_data = [...searchJson];
+      search_data = search_data.map((i) => {
+          i.equipment_section = equipment_section;
+          return i;
+        return i;
+      });
+      console.log('=-=-=-=-=-=-',search_data);
+      searchJson = search_data
+      getSearchData(searchJson);
+    })
+  // pass control
+  // $('#cont').on("change",function () {
+  //     var control_id = $(this).val();
+  //     let search_data = [...searchJson];
+  //     search_data = search_data.map((i) => {
+  //         i.control_id = control_id;
+  //         return i;
+  //       return i;
+  //     });
+  //     searchJson = search_data
+  //     getSearchData(searchJson);
+  //   })
+  $('#cont').on("change",function () {
+      var equipment_section = JSON.stringify([...equipData]);
+      let search_data = [...searchJson];
+      search_data = search_data.map((i) => {
+          i.equipment_section = equipment_section;
+          return i;
+        return i;
+      });
+      console.log('=-=-=-=-=-=-',search_data);
+      searchJson = search_data
+      getSearchData(searchJson);
+    })
+  // pass sequence type
+    CKEDITOR.instances['myeditor'].on("change",function () {
+    sequence_value = CKEDITOR.instances['myeditor'].getData();
+    var html=CKEDITOR.instances['myeditor'].getSnapshot();
+    var dom=document.createElement("DIV");
+    dom.innerHTML=html;
+    var sequence_operation=(dom.textContent || dom.innerText);
+    let search_data = [...searchJson]
+    search_data = search_data.map((i) => {
+        i.sequence_operation = sequence_operation;
+        return i;
+      return i;
+    });
+    searchJson = search_data
+    getSearchData(searchJson);
+  })
+
+  // Hit search api url by ajax
+  var request;
+  function getSearchData(searchJson){
+    $("#matching").html("");
+    if(request) {
+        request.abort();
+    };
+    for (let item of searchJson) {
+    request = $.ajax({
+      // url: '/search/?project_number='+item.project_number+'&project_name='+item.project_name+ '&standard_id='+item.standard_id+'&system_tag='+item.system_tag+'&platform_id='+item.platform_id+'&interface_id='+item.interface_id+'&controller_id='+item.controller_id+'&medium_id='+item.medium_id+'&systemtype_id='+item.systemtype_id+'&equipment_id='+item.equipment_id+'&control_id='+item.control_id+'&sequence_operation='+item.sequence_operation+'&equipment_section='+item.equipment_section,
+      url: '/search/?project_number='+item.project_number+'&project_name='+item.project_name+ '&standard_id='+item.standard_id+'&system_tag='+item.system_tag+'&platform_id='+item.platform_id+'&interface_id='+item.interface_id+'&controller_id='+item.controller_id+'&medium_id='+item.medium_id+'&systemtype_id='+item.systemtype_id+'&sequence_operation='+item.sequence_operation+'&equipment_section='+item.equipment_section,
+      type: "GET",
+      data: {
+      },
+      success: function ({ data }) {
+      if(data.length){
+        const selectE = document.getElementById("matching");
+        for (let item of data) {
+          const optionEl = document.createElement("a");
+          optionEl.innerText = item.projectNumber+':'+item.systemTag;
+          optionEl.value = item.projectId;
+          optionEl.type = "button";
+          optionEl.setAttribute('href','/edit-system/'+item.projectId )
+          selectE.append(optionEl);
+        }
+      }
+      else{
+        const selectEl = document.getElementById("matching");
+        const emptyOption = document.createElement("h6");
+        emptyOption.innerText = "No Matching System Found";
+        emptyOption.value = "";
+        // emptyOption.setAttribute('disabled',true)
+        selectEl.append(emptyOption);
+      }
+      }
+    })
+  }
+
+  }
+
+  // search scripts end
+</script>
