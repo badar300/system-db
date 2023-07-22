@@ -340,7 +340,7 @@
                   <!-- {%if allProject%} -->
                   <div class="matching-systems-box">
                     {% for project in allProject %}
-                    <a type="button" href="/edit-system/{{project.id}}">{{project.projectNumber}}:{{project.systemTag}}</a>
+                    <a type="button" data-toggle="tooltip" data-placement="top" title={{ project.projectName }} href="/edit-system/{{project.id}}">{{project.projectNumber}}:{{project.systemTag}}</a>
                     {% endfor %}
                   </div>
                   <!-- {% else %}
@@ -425,6 +425,11 @@
   });
 </script>
 <script type="text/javascript">
+
+    $(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+
   $("#myTab a").on("click", function (e) {
     e.preventDefault();
     $(this).tab("show");
