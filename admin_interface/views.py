@@ -389,6 +389,7 @@ class searchFilter(APIView):
 										result += f' "{key}": "{value}",'
 						lookups.add(Q(equipmentsection__icontains=result), Q.AND)
 
+
 			projectDetail = Project.objects.filter(lookups)
 			print("projectDetail", projectDetail)
 			if projectDetail:
@@ -430,6 +431,7 @@ class searchFilter(APIView):
 					if match:
 						p_data = {
 							'projectId': i.id,
+							'projectName': i.projectName,
 							'projectNumber': i.projectNumber,
 							'systemTag': i.systemTag,
 						}
@@ -504,58 +506,4 @@ web_resp = [
 
 
 
-# for i in web_resp:
-# 	query = i['id']
-
-[
-    {
-        "equipmentId": "1",
-        "equipmentName": "Supply Fan",
-        "controlTypeId": "9",
-        "property": [
-            {
-                "id": 1,
-                "count": "Stage 1(S1)",
-                "stage": "1",
-                "signalType": "2"
-            },
-            {
-                "id": 2,
-                "count": "Stage 2(S2)",
-                "stage": "1",
-                "signalType": "1"
-            }
-        ]
-    },
-    {
-        "equipmentId": "4",
-        "equipmentName": "Cooling",
-        "controlTypeId": "3",
-        "property": [
-            {
-                "id": 1,
-                "count": "Stage 1(S1)",
-                "stage": "4",
-                "signalType": "2"
-            },
-            {
-                "id": 2,
-                "count": "Stage 2(S2)",
-                "stage": "5",
-                "signalType": "3"
-            }
-        ]
-    },
-    {
-        "equipmentId": "2",
-        "equipmentName": "Exhaust Fan",
-        "controlTypeId": None,
-        "property": []
-    },
-    {
-        "equipmentId": "3",
-        "equipmentName": "Economizer",
-        "controlTypeId": None,
-        "property": []
-    }
-]
+[{"equipmentId": "1", "equipmentName": "Supply Fan", "controlTypeId": "1", "property": [{"id": 1, "count": "Stage 1(S1)", "stage": "1", "signalType": "1"}, {"id": 2, "count": "Stage 2(S2)", "stage": "1", "signalType": "2"}]}]
