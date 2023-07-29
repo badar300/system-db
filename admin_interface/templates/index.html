@@ -159,7 +159,7 @@
                 <div class="bd-buttons">
                   <button class="add-btn">Add</button>
                   <!-- <button class="edit-btn">Edit</button> -->
-                  <input type="button" id="btnReset" value="Reset" />
+                  <input type="button" id="btnReset" onclick="test()" value="Reset" />
                 </div>
               </div>
             </div>
@@ -438,25 +438,28 @@
     localStorage.clear();
   };
   var currentCount = 1;
-  $(function () {
-    $("#btnReset").bind("click", function () {
-      $("#standard")[0].selectedIndex = 0;
-      $("#platform")[0].selectedIndex = 0;
-      $("#interface")[0].selectedIndex = 0;
-      $("#medium")[0].selectedIndex = 0;
-      $("#type")[0].selectedIndex = 0;
-      $("#cont")[0].selectedIndex = 0;
-      $("#stagetype")[0].selectedIndex = 0;
-      $("#equip").html("");
-      $("#fetch_name").text('');
-      $(".cooling-dropdown p:first").removeClass("tab-title");
-      // $("#v-eco").html("");
-      $("#matching").html("");
-      $("#multi").html("");
-      equipData = []
-      currentEquipId = null
-    });
-  });
+  function test(){
+      location.reload()
+  }
+  {#$(function () {#}
+  {#  $("#btnReset").click(function () {#}
+  {#    $("#standard")[0].selectedIndex = 0;#}
+  {#    $("#platform")[0].selectedIndex = 0;#}
+  {#    $("#interface")[0].selectedIndex = 0;#}
+  {#    $("#medium")[0].selectedIndex = 0;#}
+  {#    $("#type")[0].selectedIndex = 0;#}
+  {#    $("#cont")[0].selectedIndex = 0;#}
+  {#    $("#stagetype")[0].selectedIndex = 0;#}
+  {#    $("#equip").html("");#}
+  {#    $("#fetch_name").text('');#}
+  {#    $(".cooling-dropdown p:first").removeClass("tab-title");#}
+  {#    // $("#v-eco").html("");#}
+  {#    $("#matching").html("");#}
+  {#    $("#multi").html("");#}
+  {#    equipData = []#}
+  {#    currentEquipId = null#}
+  {#  });#}
+  {#});#}
 
   // old search button
 
