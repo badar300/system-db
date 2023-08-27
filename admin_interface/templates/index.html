@@ -157,7 +157,9 @@
               </div>
               <div class="col-12 col-md-4">
                 <div class="bd-buttons">
+                    {% if user.is_superuser %}
                   <button class="add-btn">Add</button>
+                    {% endif %}
                   <!-- <button class="edit-btn">Edit</button> -->
                   <input type="button" id="btnReset" onclick="test()" value="Reset" />
                 </div>
