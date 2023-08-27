@@ -337,13 +337,13 @@ class searchFilter(APIView):
 			equipment_section = data.get('equipment_section')
 			lookups = Q()
 			if project_number:
-				lookups.add(Q(projectNumber=project_number), Q.AND)
+				lookups.add(Q(projectNumber__icontains=project_number), Q.AND)
 			if project_name:
-				lookups.add(Q(projectName=project_name), Q.AND)
+				lookups.add(Q(projectName__icontains=project_name), Q.AND)
 			if standard_value:
 				lookups.add(Q(standard=standard_value), Q.AND)
 			if system_tag:
-				lookups.add(Q(systemTag=system_tag), Q.AND)
+				lookups.add(Q(systemTag__icontains=system_tag), Q.AND)
 			if platform_value:
 				lookups.add(Q(platform=platform_value), Q.AND)
 			if interface_value:
@@ -353,7 +353,7 @@ class searchFilter(APIView):
 			if medium_value:
 				lookups.add(Q(sysmedium=medium_value), Q.AND)
 			if systype_value:
-				lookups.add(Q(systype=systype_value), Q.AND)	
+				lookups.add(Q(systype=systype_value), Q.AND)
 			if sequence_value:
 				lookups.add(Q(sequenceoperation__sequence__icontains=sequence_value), Q.AND)
 			if equipment_value:
