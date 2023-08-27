@@ -340,7 +340,8 @@
                   <!-- {%if allProject%} -->
                   <div class="matching-systems-box">
                     {% for project in allProject %}
-                    <a type="button" data-toggle="tooltip" data-placement="top" title={{ project.projectName }} href="/edit-system/{{project.id}}">{{project.projectNumber}}:{{project.systemTag}}</a>
+                        {{ project.projectName }}
+                    <a type="button" data-toggle="tooltip" data-placement="top" title="{{ project.projectName|safe }}" href="/edit-system/{{project.id}}">{{project.projectNumber}}:{{project.systemTag}}</a>
                     {% endfor %}
                   </div>
                   <!-- {% else %}
@@ -1067,6 +1068,7 @@ $('#system_tag').on("keyup",function () {
           optionEl.value = item.projectId;
           optionEl.type = "button";
           optionEl.setAttribute('href','/edit-system/'+item.projectId )
+            optionEl.title = item.projectName
           selectE.append(optionEl);
         }
       }
