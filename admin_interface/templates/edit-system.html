@@ -81,9 +81,12 @@
                      </div>
                      <div class="col-12 col-md-5">
                         <div class="bd-buttons edit-btns">
+                            {% if user.is_superuser %}
                            <button class="add-btn edit">Save </button>
                            <!-- modal hit here -->
                            <button type="button" class="delete-btn" data-toggle="modal" data-target="#myModal">Delete </button>
+                    {% endif %}
+
                             <!-- Modal -->
                             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                               <div class="modal-dialog" role="document">
